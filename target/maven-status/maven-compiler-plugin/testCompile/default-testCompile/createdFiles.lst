@@ -1,0 +1,6 @@
+com\mercedesbenz\shop\ShopHomePageTests.class
+com\mercedesbenz\shop\utils\SystemUtils.class
+com\mercedesbenz\shop\utils\SeleniumUtils.class
+com\mercedesbenz\shop\utils\SeleniumUtils$1.class
+com\mercedesbenz\shop\ShopCarExplorerTests.class
+com\mercedesbenz\shop\ShopCarSetupTests.class
