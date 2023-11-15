@@ -20,9 +20,7 @@ jobs:
               distribution: 'oracle'
               architecture: x64
 
-         - name: Maven
-           run: mvn -B test --file pom.xml
-
          - name: Buid app
            run: |
+              mvn clean install
               mvn clean test
