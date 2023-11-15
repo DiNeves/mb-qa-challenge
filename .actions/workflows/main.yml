@@ -20,5 +20,10 @@ jobs:
 	      java-version: 17
 
          - name: Maven
-           run: mvn -B test --file TASK_2/mercedes-benz-shop-australia/pom.xml
+           run: mvn -B test --file pom.xml
+
+         - name: Buid app
+           run: |
+              mvn clean test
+ 
 
