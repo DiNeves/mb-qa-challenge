@@ -4,6 +4,8 @@ on:
    push:
       branches:
          - main
+jobs:
+   build-deploy:
          
 image: markhobson/maven-chrome:jdk-17
 stages:
