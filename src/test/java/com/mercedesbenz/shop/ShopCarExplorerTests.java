@@ -1,31 +1,16 @@
 package com.mercedesbenz.shop;
 
-import com.mercedesbenz.shop.utils.SystemUtils;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -73,20 +58,29 @@ public class ShopCarExplorerTests extends ShopCarSetupTests {
 		System.out.println("getCarTechDetailTest finished");
 	}
 	
-	
 	@Parameters({ "failedAssertionEnquireNowFormMessage" })
 	@Test
 	public void openEnquireNowFormTest(String failedAssertionEnquireNowFormMessage) {
 
 		System.out.println("openEnquireNowFormTest started");
 
-		WebElement enquireNowbutton = driver
-				.findElement(By.xpath("//button[@data-test-id='dcp-buy-box__contact-seller']"));
+//		Wait for loader.
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='dcp-loader']")));
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement enquireNowbutton = wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//button[@data-test-id='dcp-buy-box__contact-seller']")));
+				
 		enquireNowbutton.click();
-
+		
+//		Wait for loader.
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='dcp-loader']")));
+		
 //		Wait 5 seconds for the "Enquire Now" form to be visible.	
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		WebElement enquireNowFormElement = wait.until(
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement enquireNowFormElement = wait3.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='dcp-rfq-contact__heading']")));
 
 //		Validate if the "Enquire Now" form is shown.
@@ -109,61 +103,83 @@ public class ShopCarExplorerTests extends ShopCarSetupTests {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		WebElement firstNameElement = wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@data-test-id='rfq-contact__first-name']/wb-input-control/wb-input/input")));
+				
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement lastNameElement = wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__last-name']/wb-input-control/wb-input/input")));
 		
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement emailElement = wait2.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__email']/wb-input-control/wb-input/input")));
+		
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement phoneElement = wait3.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__phone']/wb-input-control/wb-input/input")));
+		
+		WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement postalCodeElement = wait4.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__postal-code']/wb-input-control/wb-input/input")));
+		
+		WebDriverWait wait5 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement commentsElements = wait5.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__comments']/wb-input-control/wb-input/textarea")));
+		
+		WebDriverWait wait6 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement privacyElement = wait6.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class='dcp-multi-checkbox'][1]/div/div/wb-checkbox-control/label/wb-icon")));
+		
+		WebDriverWait wait7 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement directMarktSmsMmsImElement = wait7.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__consent-marketing']/div/div[1]/wb-checkbox-control/label/wb-icon")));
+		
+		WebDriverWait wait8 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement directMarktPhoneElement = wait8.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__consent-marketing']/div/div[2]/wb-checkbox-control/label/wb-icon")));
 
-		builder.moveToElement(firstNameElement).perform();
+		WebDriverWait wait9 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement directMarktEmailElement = wait9.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@data-test-id='rfq-contact__consent-marketing']/div/div[3]/wb-checkbox-control/label/wb-icon")));
+		
+		WebDriverWait wait10 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement proceedButtonElement = wait10.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//button[@data-test-id='dcp-rfq-contact-button-container__button-next']")));
+		
+		builder.moveToElement(firstNameElement).click().perform();
 		firstNameElement.sendKeys(firstName);
 
-		WebElement lastNameElement = driver
-				.findElement(By.xpath("//div[@data-test-id='rfq-contact__last-name']/wb-input-control/wb-input/input"));
 		builder.moveToElement(lastNameElement).perform();
 		lastNameElement.sendKeys(lastName);
 
-		WebElement emailElement = driver
-				.findElement(By.xpath("//div[@data-test-id='rfq-contact__email']/wb-input-control/wb-input/input"));
 		emailElement.sendKeys(email);
 
-		WebElement phoneElement = driver
-				.findElement(By.xpath("//div[@data-test-id='rfq-contact__phone']/wb-input-control/wb-input/input"));
 		phoneElement.sendKeys(phone);
 
-		WebElement postalCodeElement = driver.findElement(
-				By.xpath("//div[@data-test-id='rfq-contact__postal-code']/wb-input-control/wb-input/input"));
 		postalCodeElement.sendKeys(postalCode);
 
-		WebElement commentsElements = driver.findElement(
-				By.xpath("//div[@data-test-id='rfq-contact__comments']/wb-input-control/wb-input/textarea"));
 		commentsElements.sendKeys(comments);
 
 		if (privacy) {
-			WebElement privacyElement = driver.findElement(
-					By.xpath("//div[@class='dcp-multi-checkbox'][1]/div/div/wb-checkbox-control/label/wb-icon"));
 			privacyElement.click();
 		}
 
 		if (directMarktSmsMmsIm) {
-			WebElement directMarktSmsMmsImElement = driver.findElement(By.xpath(
-					"//div[@data-test-id='rfq-contact__consent-marketing']/div/div[1]/wb-checkbox-control/label/wb-icon"));
 			directMarktSmsMmsImElement.click();
 		}
 
 		if (directMarktPhone) {
-			WebElement directMarktPhoneElement = driver.findElement(By.xpath(
-					"//div[@data-test-id='rfq-contact__consent-marketing']/div/div[2]/wb-checkbox-control/label/wb-icon"));
 			directMarktPhoneElement.click();
 		}
 
 		if (directMarktEmail) {
-			WebElement directMarktEmailElement = driver.findElement(By.xpath(
-					"//div[@data-test-id='rfq-contact__consent-marketing']/div/div[3]/wb-checkbox-control/label/wb-icon"));
 			directMarktEmailElement.click();
 		}
 		
-		WebElement proceedButtonElement = driver.findElement(
-				By.xpath("//button[@data-test-id='dcp-rfq-contact-button-container__button-next']"));
 		proceedButtonElement.click();
 		
-		WebElement errorMessageElement = driver.findElement(By.xpath("//div[@class='dcp-error-message']"));
+		
+		WebDriverWait wait11 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement errorMessageElement = wait11.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class='dcp-error-message']")));
 		
 		String currentErrorMessageDisplayed = errorMessageElement.getText();
 		Assert.assertTrue(currentErrorMessageDisplayed.contains(errorMessageAssertionEnquireNowForm),

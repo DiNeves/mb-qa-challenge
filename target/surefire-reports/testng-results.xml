@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+<testng-results ignored="0" total="18" passed="18" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-11-15T00:04:39 WET" name="ShopHomePageTestsSuite" finished-at="2023-11-15T00:04:57 WET" duration-ms="18701">
+  <suite started-at="2023-11-16T03:48:10 WET" name="ShopHomePageTestsSuite" finished-at="2023-11-16T03:49:16 WET" duration-ms="65704">
     <groups>
     </groups>
-    <test started-at="2023-11-15T00:04:39 WET" name="invalidEmailCarEnquireNowFormTest" finished-at="2023-11-15T00:04:57 WET" duration-ms="18701">
+    <test started-at="2023-11-16T03:48:10 WET" name="invalidEmailCarEnquireNowFormChromeTest" finished-at="2023-11-16T03:48:42 WET" duration-ms="32385">
       <class name="com.mercedesbenz.shop.ShopCarExplorerTests">
-        <test-method signature="getCarTechDetailTest(java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@708f5957]" started-at="2023-11-15T00:04:55 WET" name="getCarTechDetailTest" finished-at="2023-11-15T00:04:55 WET" duration-ms="385" status="PASS">
+        <test-method signature="getCarTechDetailTest(java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@c33b74f]" started-at="2023-11-16T03:48:39 WET" name="getCarTechDetailTest" finished-at="2023-11-16T03:48:39 WET" duration-ms="343" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,7 +23,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getCarTechDetailTest -->
-        <test-method signature="openEnquireNowFormTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@708f5957]" started-at="2023-11-15T00:04:55 WET" name="openEnquireNowFormTest" finished-at="2023-11-15T00:04:56 WET" duration-ms="1283" status="PASS">
+        <test-method signature="openEnquireNowFormTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@c33b74f]" started-at="2023-11-16T03:48:39 WET" name="openEnquireNowFormTest" finished-at="2023-11-16T03:48:41 WET" duration-ms="1808" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -34,7 +34,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openEnquireNowFormTest -->
-        <test-method signature="fillEnquireNowCarFormNegativeTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,boolean,boolean,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@708f5957]" started-at="2023-11-15T00:04:56 WET" name="fillEnquireNowCarFormNegativeTest" finished-at="2023-11-15T00:04:57 WET" duration-ms="1015" status="PASS">
+        <test-method signature="fillEnquireNowCarFormNegativeTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,boolean,boolean,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@c33b74f]" started-at="2023-11-16T03:48:41 WET" name="fillEnquireNowCarFormNegativeTest" finished-at="2023-11-16T03:48:42 WET" duration-ms="902" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -97,7 +97,7 @@
         </test-method> <!-- fillEnquireNowCarFormNegativeTest -->
       </class> <!-- com.mercedesbenz.shop.ShopCarExplorerTests -->
       <class name="com.mercedesbenz.shop.ShopHomePageTests">
-        <test-method signature="acceptCookiesTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@619713e5]" started-at="2023-11-15T00:04:39 WET" name="acceptCookiesTest" finished-at="2023-11-15T00:04:40 WET" duration-ms="1447" status="PASS">
+        <test-method signature="acceptCookiesTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@35ef1869]" started-at="2023-11-16T03:48:23 WET" name="acceptCookiesTest" finished-at="2023-11-16T03:48:25 WET" duration-ms="1348" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -108,7 +108,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- acceptCookiesTest -->
-        <test-method signature="fillLocationFormTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@619713e5]" started-at="2023-11-15T00:04:40 WET" name="fillLocationFormTest" finished-at="2023-11-15T00:04:42 WET" duration-ms="2138" status="PASS">
+        <test-method signature="fillLocationFormTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@35ef1869]" started-at="2023-11-16T03:48:25 WET" name="fillLocationFormTest" finished-at="2023-11-16T03:48:27 WET" duration-ms="2171" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -134,7 +134,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- fillLocationFormTest -->
-        <test-method signature="openCarFilterFormTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@619713e5]" started-at="2023-11-15T00:04:42 WET" name="openCarFilterFormTest" finished-at="2023-11-15T00:04:44 WET" duration-ms="1484" status="PASS">
+        <test-method signature="openCarFilterFormTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@35ef1869]" started-at="2023-11-16T03:48:27 WET" name="openCarFilterFormTest" finished-at="2023-11-16T03:48:28 WET" duration-ms="1165" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -145,11 +145,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openCarFilterFormTest -->
-        <test-method signature="fillCarFilterFormTest()[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@619713e5]" started-at="2023-11-15T00:04:44 WET" name="fillCarFilterFormTest" finished-at="2023-11-15T00:04:52 WET" duration-ms="7936" status="PASS">
+        <test-method signature="fillCarFilterFormTest()[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@35ef1869]" started-at="2023-11-16T03:48:28 WET" name="fillCarFilterFormTest" finished-at="2023-11-16T03:48:36 WET" duration-ms="8102" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- fillCarFilterFormTest -->
-        <test-method signature="sortingCarFilterTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@619713e5]" started-at="2023-11-15T00:04:52 WET" name="sortingCarFilterTest" finished-at="2023-11-15T00:04:53 WET" duration-ms="1200" status="PASS">
+        <test-method signature="sortingCarFilterTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@35ef1869]" started-at="2023-11-16T03:48:36 WET" name="sortingCarFilterTest" finished-at="2023-11-16T03:48:37 WET" duration-ms="978" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -160,13 +160,13 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sortingCarFilterTest -->
-        <test-method signature="selectFirstCarAvailableTest()[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@619713e5]" started-at="2023-11-15T00:04:53 WET" name="selectFirstCarAvailableTest" finished-at="2023-11-15T00:04:55 WET" duration-ms="1773" status="PASS">
+        <test-method signature="selectFirstCarAvailableTest()[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@35ef1869]" started-at="2023-11-16T03:48:37 WET" name="selectFirstCarAvailableTest" finished-at="2023-11-16T03:48:39 WET" duration-ms="1804" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- selectFirstCarAvailableTest -->
       </class> <!-- com.mercedesbenz.shop.ShopHomePageTests -->
       <class name="com.mercedesbenz.shop.ShopCarSetupTests">
-        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarSetupTests@15eb5ee5]" started-at="2023-11-15T00:04:25 WET" name="setUp" finished-at="2023-11-15T00:04:39 WET" duration-ms="13866" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarSetupTests@31368b99]" started-at="2023-11-16T03:48:10 WET" name="setUp" finished-at="2023-11-16T03:48:23 WET" duration-ms="13482" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -182,11 +182,194 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.mercedesbenz.shop.ShopCarSetupTests@15eb5ee5]" started-at="2023-11-15T00:04:57 WET" name="tearDown" finished-at="2023-11-15T00:04:57 WET" duration-ms="208" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.mercedesbenz.shop.ShopCarSetupTests@31368b99]" started-at="2023-11-16T03:48:42 WET" name="tearDown" finished-at="2023-11-16T03:48:42 WET" duration-ms="240" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.mercedesbenz.shop.ShopCarSetupTests -->
-    </test> <!-- invalidEmailCarEnquireNowFormTest -->
+    </test> <!-- invalidEmailCarEnquireNowFormChromeTest -->
+    <test started-at="2023-11-16T03:48:42 WET" name="invalidEmailCarEnquireNowFormFirefoxTest" finished-at="2023-11-16T03:49:16 WET" duration-ms="33295">
+      <class name="com.mercedesbenz.shop.ShopCarExplorerTests">
+        <test-method signature="getCarTechDetailTest(java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@5af3afd9]" started-at="2023-11-16T03:49:11 WET" name="getCarTechDetailTest" finished-at="2023-11-16T03:49:11 WET" duration-ms="257" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[VIN;Model Year]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[./test-file-output/output.txt]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getCarTechDetailTest -->
+        <test-method signature="openEnquireNowFormTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@5af3afd9]" started-at="2023-11-16T03:49:11 WET" name="openEnquireNowFormTest" finished-at="2023-11-16T03:49:13 WET" duration-ms="2038" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[The Enquire Now form is not being displayed.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openEnquireNowFormTest -->
+        <test-method signature="fillEnquireNowCarFormNegativeTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,boolean,boolean,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarExplorerTests@5af3afd9]" started-at="2023-11-16T03:49:13 WET" name="fillEnquireNowCarFormNegativeTest" finished-at="2023-11-16T03:49:15 WET" duration-ms="1726" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[John]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Doe]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[jonh.doe.gmail.com]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[0441234567]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[2007]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[test]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[Please check the data you entered.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillEnquireNowCarFormNegativeTest -->
+      </class> <!-- com.mercedesbenz.shop.ShopCarExplorerTests -->
+      <class name="com.mercedesbenz.shop.ShopHomePageTests">
+        <test-method signature="acceptCookiesTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@661972b0]" started-at="2023-11-16T03:48:55 WET" name="acceptCookiesTest" finished-at="2023-11-16T03:48:56 WET" duration-ms="1019" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[The cookies message is still being displayed.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- acceptCookiesTest -->
+        <test-method signature="fillLocationFormTest(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@661972b0]" started-at="2023-11-16T03:48:56 WET" name="fillLocationFormTest" finished-at="2023-11-16T03:48:59 WET" duration-ms="3017" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[New South Wales]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[2007]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Private]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[The location form is still being displayed.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillLocationFormTest -->
+        <test-method signature="openCarFilterFormTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@661972b0]" started-at="2023-11-16T03:48:59 WET" name="openCarFilterFormTest" finished-at="2023-11-16T03:49:00 WET" duration-ms="963" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[The car filter form is not being displayed.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openCarFilterFormTest -->
+        <test-method signature="fillCarFilterFormTest()[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@661972b0]" started-at="2023-11-16T03:49:00 WET" name="fillCarFilterFormTest" finished-at="2023-11-16T03:49:07 WET" duration-ms="7435" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillCarFilterFormTest -->
+        <test-method signature="sortingCarFilterTest(java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@661972b0]" started-at="2023-11-16T03:49:07 WET" name="sortingCarFilterTest" finished-at="2023-11-16T03:49:08 WET" duration-ms="387" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Price (descending)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sortingCarFilterTest -->
+        <test-method signature="selectFirstCarAvailableTest()[pri:0, instance:com.mercedesbenz.shop.ShopHomePageTests@661972b0]" started-at="2023-11-16T03:49:08 WET" name="selectFirstCarAvailableTest" finished-at="2023-11-16T03:49:11 WET" duration-ms="2736" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectFirstCarAvailableTest -->
+      </class> <!-- com.mercedesbenz.shop.ShopHomePageTests -->
+      <class name="com.mercedesbenz.shop.ShopCarSetupTests">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String)[pri:0, instance:com.mercedesbenz.shop.ShopCarSetupTests@3bb9a3ff]" started-at="2023-11-16T03:48:42 WET" name="setUp" finished-at="2023-11-16T03:48:55 WET" duration-ms="12669" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://shop.mercedes-benz.com/en-au/shop/vehicle/srp/demo/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.mercedesbenz.shop.ShopCarSetupTests@3bb9a3ff]" started-at="2023-11-16T03:49:15 WET" name="tearDown" finished-at="2023-11-16T03:49:16 WET" duration-ms="1031" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.mercedesbenz.shop.ShopCarSetupTests -->
+    </test> <!-- invalidEmailCarEnquireNowFormFirefoxTest -->
   </suite> <!-- ShopHomePageTestsSuite -->
 </testng-results>

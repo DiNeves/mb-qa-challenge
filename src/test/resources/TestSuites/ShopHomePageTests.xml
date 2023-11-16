@@ -3,55 +3,33 @@
 
 <suite name="ShopHomePageTestsSuite" verbose="1">
 
+	
 	<parameter name="appUrl" value="https://shop.mercedes-benz.com/en-au/shop/vehicle/srp/demo/" />
-	<parameter name="browser" value="chrome" />
-	<parameter name="failedAssertionCookiesMessage" value="The cookies message is still being displayed." />
+	
 	<parameter name="selectedStateLocation" value="New South Wales" />
 	<parameter name="insertedPostalCode" value="2007" />
-	<parameter name="expectedRadioBoxText" value="Private" />
+	<parameter name="expectedRadioBoxText" value="Private" />	
+	
+	<parameter name="sortingFilterType" value="Price (descending)" />	
+	
+	<parameter name="exportFilePath" value="./test-file-output/output.txt" />
+	
+	<parameter name="errorMessageAssertionEnquireNowForm" value="Please check the data you entered." />
+	
+	<parameter name="failedAssertionCookiesMessage" value="The cookies message is still being displayed." />
 	<parameter name="failedAssertionLocationFormMessage" value="The location form is still being displayed." />
 	<parameter name="failedAssertionCarFilterFormMessage" value="The car filter form is not being displayed." />
-	<parameter name="sortingFilterType" value="Price (descending)" />
 	<parameter name="failedAssertionEnquireNowFormMessage" value="The Enquire Now form is not being displayed." />
-	<parameter name="exportFilePath" value="./test-file-output/output.txt" />
-	<parameter name="errorMessageAssertionEnquireNowForm" value="Please check the data you entered." />
 
 
-	<!-- Test Cases for Mercedes-Benz Shop Australia -->
-	<!--
-	<test name="InitTest">
-		<classes>
-			<class name="com.mercedesbenz.shop.ShopCarInitSetupTests" />
-			<methods>
-				<include name="setUp" />
-			</methods>
-		</classes>
-	</test>
-
-	<test name="fillLocationFormTest">
-		<classes>
-			<class name="com.mercedesbenz.shop.ShopHomePageTests" />
-			<methods>
-				<include name="fillLocationFormTest" />
-			</methods>
-		</classes>
-	</test>
-	<test name="openCarFilterFormTest">
-		<classes>
-			<class name="com.mercedesbenz.shop.ShopHomePageTests" />
-			<methods>
-				<include name="openCarFilterFormTest" />
-			</methods>
-		</classes>
-	</test>
-	-->
-	
-	<test name="invalidEmailCarEnquireNowFormTest">
+	<!-- Test Case for Mercedes-Benz Shop Australia in Chrome browser -->
+	<test name="invalidEmailCarEnquireNowFormChromeTest">
+		<parameter name="browser" value="chrome" />
 		<classes>	
 			<class name="com.mercedesbenz.shop.ShopCarSetupTests" />
 			<class name="com.mercedesbenz.shop.ShopHomePageTests" />
 			<methods>
-				<include name="acceptCookiesTest" />			
+				<include name="acceptCookiesTest" />
 				<include name="fillLocationFormTest"  dependsOnMethods="acceptCookiesTest"/>
 				<include name="openCarFilterFormTest" dependsOnMethods="fillLocationFormTest"/>
 				<include name="fillCarFilterFormTest" dependsOnMethods="openCarFilterFormTest"/>
@@ -77,8 +55,29 @@
 					<parameter name="directMarktEmail" value="true" />
 				</include>
 			</methods>
-		    
-				<!--
+		</classes>
+	</test>
+	
+	<!-- Test Case for Mercedes-Benz Shop Australia in Firefox browser -->
+	<test name="invalidEmailCarEnquireNowFormFirefoxTest">
+		<parameter name="browser" value="firefox" />
+		<classes>	
+			<class name="com.mercedesbenz.shop.ShopCarSetupTests" />
+			<class name="com.mercedesbenz.shop.ShopHomePageTests" />
+			<methods>
+				<include name="acceptCookiesTest"/>
+				<include name="fillLocationFormTest"  dependsOnMethods="acceptCookiesTest"/>
+				<include name="openCarFilterFormTest" dependsOnMethods="fillLocationFormTest"/>
+				<include name="fillCarFilterFormTest" dependsOnMethods="openCarFilterFormTest"/>
+				<include name="sortingCarFilterTest" dependsOnMethods="fillCarFilterFormTest"/>
+				<include name="selectFirstCarAvailableTest"	dependsOnMethods="sortingCarFilterTest" />
+			</methods>
+			<class name="com.mercedesbenz.shop.ShopCarExplorerTests" />
+			<methods>
+				<include name="getCarTechDetailTest" dependsOnMethods="selectFirstCarAvailableTest">
+					<parameter name="carTechSpecification" value="VIN;Model Year" />
+				</include>
+				<include name="openEnquireNowFormTest" dependsOnMethods="getCarTechDetailTest"/>
 				<include name="fillEnquireNowCarFormNegativeTest" dependsOnMethods="openEnquireNowFormTest">
 					<parameter name="firstName" value="John" />
 					<parameter name="lastName" value="Doe" />
@@ -91,7 +90,8 @@
 					<parameter name="directMarktPhone" value="true" />
 					<parameter name="directMarktEmail" value="true" />
 				</include>
-				-->
+			</methods>
 		</classes>
 	</test>
+	 
 </suite>

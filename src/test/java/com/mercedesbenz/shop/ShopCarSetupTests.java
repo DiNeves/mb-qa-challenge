@@ -1,33 +1,24 @@
 package com.mercedesbenz.shop;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 
 public class ShopCarSetupTests {
 
 	protected static WebDriver driver;
 
 	@Parameters({ "appUrl", "browser" })
-	@BeforeSuite(alwaysRun = true )
+	@BeforeTest(alwaysRun = true )
 	public void setUp(String appUrl, @Optional("chrome") String browser) {
 
 //		Create driver
@@ -44,6 +35,12 @@ public class ShopCarSetupTests {
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
 			firefoxOptions.setProfile(firefoxProfile);
 			driver = new FirefoxDriver(firefoxOptions);
+			break;
+			
+		case "edge":
+			EdgeOptions edgeOptions = new EdgeOptions();
+			edgeOptions.addArguments("force-device-scale-factor=0.75");
+			driver = new EdgeDriver(edgeOptions);
 			break;
 
 		default:
@@ -67,7 +64,7 @@ public class ShopCarSetupTests {
 	}	
 
 
-	@AfterSuite(alwaysRun = true )
+	@AfterTest(alwaysRun = true )
 	public void tearDown() {
 //		Close browser
 		driver.quit();

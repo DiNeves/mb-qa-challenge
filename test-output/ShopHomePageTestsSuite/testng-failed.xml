@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [ShopHomePageTestsSuite]" guice-stage="DEVELOPMENT">
+  <parameter name="exportFilePath" value="./test-file-output/output.txt"/>
   <parameter name="failedAssertionCookiesMessage" value="The cookies message is still being displayed."/>
   <parameter name="failedAssertionLocationFormMessage" value="The location form is still being displayed."/>
   <parameter name="selectedStateLocation" value="New South Wales"/>
   <parameter name="failedAssertionEnquireNowFormMessage" value="The Enquire Now form is not being displayed."/>
-  <parameter name="browser" value="firefox"/>
   <parameter name="expectedRadioBoxText" value="Private"/>
   <parameter name="failedAssertionCarFilterFormMessage" value="The car filter form is not being displayed."/>
   <parameter name="appUrl" value="https://shop.mercedes-benz.com/en-au/shop/vehicle/srp/demo/"/>
   <parameter name="insertedPostalCode" value="2007"/>
   <parameter name="errorMessageAssertionEnquireNowForm" value="Please check the data you entered."/>
   <parameter name="sortingFilterType" value="Price (descending)"/>
-  <test thread-count="5" name="invalidEmailCarEnquireNowFormTest(failed)">
+  <test thread-count="5" name="invalidEmailCarEnquireNowFormChromeTest(failed)">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.mercedesbenz.shop.ShopCarExplorerTests">
+      <class name="com.mercedesbenz.shop.ShopHomePageTests">
         <methods>
-          <include name="fillEnquireNowCarFormNegativeTest"/>
           <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="sortingCarFilterTest" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.mercedesbenz.shop.ShopCarExplorerTests -->
+      </class> <!-- com.mercedesbenz.shop.ShopHomePageTests -->
     </classes>
-  </test> <!-- invalidEmailCarEnquireNowFormTest(failed) -->
+  </test> <!-- invalidEmailCarEnquireNowFormChromeTest(failed) -->
+  <test thread-count="5" name="invalidEmailCarEnquireNowFormFirefoxTest(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.mercedesbenz.shop.ShopHomePageTests">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="sortingCarFilterTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.mercedesbenz.shop.ShopHomePageTests -->
+    </classes>
+  </test> <!-- invalidEmailCarEnquireNowFormFirefoxTest(failed) -->
 </suite> <!-- Failed suite [ShopHomePageTestsSuite] -->

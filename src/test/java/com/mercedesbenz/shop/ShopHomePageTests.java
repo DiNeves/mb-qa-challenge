@@ -1,33 +1,17 @@
 package com.mercedesbenz.shop;
 
 
-import com.mercedesbenz.shop.utils.SeleniumUtils;
-
 import java.time.Duration;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -49,23 +33,39 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 //		Open page (at BeforeMethod).
 
 		System.out.println("acceptCookiesTest started");
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement shadowHost =wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.tagName("cmm-cookie-banner")));
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait1.until(ExpectedConditions.attributeToBe(
+				By.tagName("cmm-cookie-banner"),"class", "hydrated"));	
+		
+//		Wait for loader.
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait2.until(ExpectedConditions.invisibilityOfElementLocated(
+				By.xpath("//div[@class='dcp-loader']")));
+		
+		SearchContext shadowRoot = shadowHost.getShadowRoot();	
+		
 
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait3.until(ExpectedConditions.visibilityOf(shadowRoot.findElement(
+				By.cssSelector("wb7-button[data-test='handle-accept-all-button']"))));
 
-	//		Get element inside DOM shadow root.	
-		WebElement shadowHost = driver.findElement(By.tagName("cmm-cookie-banner"));
-		SearchContext shadowRoot = shadowHost.getShadowRoot();
 		
 //		Wait 5 seconds for the "Agree to all" cookies button to be clickable.
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement agreeAllCookiesButton = wait.until(ExpectedConditions.elementToBeClickable(
-				shadowRoot.findElement(By.cssSelector("wb7-button[data-test='handle-accept-all-button']"))));
+		WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement agreeAllCookiesButton=wait4.until(ExpectedConditions.elementToBeClickable(shadowRoot.findElement(
+				By.cssSelector("wb7-button[data-test='handle-accept-all-button']"))));
 
 //		Click "Agree to All" button.
 		agreeAllCookiesButton.click();
 		
 //		Validate if the "Agree to all" button is still visible.
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		Assert.assertTrue(wait1.until(ExpectedConditions.invisibilityOf(agreeAllCookiesButton)),
+		WebDriverWait wait5 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		Assert.assertTrue(wait5.until(ExpectedConditions.invisibilityOf(agreeAllCookiesButton)),
 				failedAssertionCookiesMessage);
 
 		System.out.println("acceptCookiesTest finished");
@@ -84,54 +84,60 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 
 		System.out.println("fillLocationFormTest started");
 
-//		Find state select element.
-		WebElement stateSelectElement = driver
-				.findElement(By.xpath("//wb-select-control[@class='dcp-header-location-modal-dropdown hydrated']"));
-
-//		Close dropdown state location element.
-		stateSelectElement.click();
-
-//		Find interactable field in wb-select element.
-		WebElement interactableSelectElement = stateSelectElement.findElement(By.xpath("//wb-select/select"));
-		interactableSelectElement.sendKeys(selectedStateLocation);
-
-//		Close dropdown state location element.
-		stateSelectElement.click();
-
-//		Find postal code input element. 
-		
-		WebElement postalCodeInputElement = driver
-				.findElement(By.xpath("//wb-input-control[@class='hydrated']/wb-input/input"));
-		
 		Actions builder = new Actions(driver);
-		builder.moveToElement(postalCodeInputElement).perform();		
-		postalCodeInputElement.sendKeys(insertedPostalCode.substring(0, insertedPostalCode.length()-1));
-		postalCodeInputElement.sendKeys(insertedPostalCode.substring(insertedPostalCode.length()-1, insertedPostalCode.length()));
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement stateSelectElement =wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//wb-select-control[@class='dcp-header-location-modal-dropdown hydrated']")));
+		
+		Select interactableSelectElement = new Select(stateSelectElement.findElement(
+				By.xpath("./wb-select/select")));
+				
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement postalCodeInputElement =wait2.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//wb-input-control[@class='hydrated']/wb-input/input")));
 		
 //		Get all elements from radio box.
-		List<WebElement> purposeRadioElements = driver
-				.findElements(By.xpath("//div[@class='dcp-radio__options-container']/wb-radio-control"));
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		List<WebElement> purposeRadioElements =wait3.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//div[@class='dcp-radio__options-container']/wb-radio-control")));
+		
+		
+
+		
+		interactableSelectElement.selectByVisibleText(selectedStateLocation);
+		
+//		Find postal code input element. 	
+		builder.moveToElement(postalCodeInputElement).click().perform();		
+		postalCodeInputElement.sendKeys(insertedPostalCode);
+				//.substring(0, insertedPostalCode.length()-1));
+		//postalCodeInputElement.sendKeys(insertedPostalCode.substring(insertedPostalCode.length()-1, insertedPostalCode.length()));
+		
+		WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait4.until(ExpectedConditions.invisibilityOfElementLocated(
+				By.xpath("//wb-control-error")));
+		
 
 //		Search for desired radio box and click it.
 		for (WebElement purposeRadioElement : purposeRadioElements) {
 
-			if (purposeRadioElement.getText().equals(expectedRadioBoxText)) {
+			if (purposeRadioElement.getText().equals(expectedRadioBoxText)) {			
 				purposeRadioElement.findElement(By.xpath("//div[@class='wb-radio-control__indicator']")).click();
 			}
 		}
 
-//		Wait 5 seconds for the "Continue" button to be clickable.
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(
-				driver.findElement(By.xpath("//button[@data-test-id='state-selected-modal__close']"))));
+//		Wait for the "Continue" button to be clickable.
+		WebDriverWait wait5 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement continueButton = wait5.until(ExpectedConditions.elementToBeClickable(driver.findElement(
+				By.xpath("//button[@data-test-id='state-selected-modal__close']"))));
 
 //		 "Continue" button is clicked.
-		continueButton.click();
+		builder.moveToElement(continueButton).click().perform();
 
 //		Verify location form element is no longer displayed
 		WebElement locationFormElement = driver.findElement(By.xpath("//div[@data-test-id='modal-popup__location']"));
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
-		Assert.assertTrue(wait1.until(ExpectedConditions.invisibilityOf(locationFormElement)),
+		WebDriverWait wait6 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Assert.assertTrue(wait6.until(ExpectedConditions.invisibilityOf(locationFormElement)),
 				failedAssertionLocationFormMessage);
 
 		System.out.println("fillLocationFormTest finished");
@@ -147,15 +153,23 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 
 		System.out.println("openCarFilterFormTest started");
 
-//		Wait 5 seconds for the car filter button to be clickable.
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		WebElement carFilterButton = wait.until(ExpectedConditions
-				.elementToBeClickable(driver.findElement(By.xpath("//span[@class='filter-toggle']"))));
+//		Wait for the car filter button to be clickable.
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//span[@class='filter-toggle']")));		
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement carFilterButton = wait1.until(ExpectedConditions.elementToBeClickable(driver.findElement(
+				By.xpath("//span[@class='filter-toggle']"))));
+		
 		carFilterButton.click();
 
-//		Wait 5 seconds for the car filter form to be visible.	
-		WebElement carFilterFormElement = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sidebar-filter']")));
+//		Wait for the car filter form to be visible.	
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait2.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class='sidebar-filter']")));		
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement carFilterFormElement = wait3.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//div[@class='sidebar-filter']")));
 
 //		Validate if the car filter form is shown.
 		Assert.assertTrue(carFilterFormElement.isDisplayed(), failedAssertionCarFilterFormMessage);
@@ -171,52 +185,72 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 //		Test case: fillCarFilterFormTest
 //		Open page (at BeforeMethod).
 //		Accept All Cookies, fill location form and open car filter form (Dependency on openCarFilterFormTest).
+		
+		String selectedColourIndexer ="1";
+		String selectedColourText ="";
+		
 //		Switch to Pre-owned tab.
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		WebElement preOwnedtab = wait.until(
-				ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//wb-tab[@name='0']/button"))));
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class='sidebar-filter']")));
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement preOwnedtab = wait1.until(ExpectedConditions.elementToBeClickable(driver.findElement(
+				By.xpath("//wb-tab[@name='0']/button"))));
 
 		preOwnedtab.click();
 
 //		Wait until Pre-Owned form is shown.
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//wb-tab[@name='0']/button")));
-
-//		Wait for loader.
 		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='dcp-loader']")));
-
-//		Wait until colour button is shown.
-		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement colourOption = wait3
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='fab-filter']/div[7]")));
-
-//		Click to open colour options selector.	
-		WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait4.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='fab-filter']/div[7]")));
-		colourOption.click();
-
-//		Click to see the colour options available.
-		WebDriverWait wait5 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement colourDropdown = wait5.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-				"//div[@class='fab-filter']/div[7]/div/div[@class='category-filter-row__container']/div/div[@data-test-id='multi-select-dropdown']/a")));
-		colourDropdown.click();
-
-//		Click on the first available colour.
-		WebDriverWait wait6 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement selectedColour = wait6.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"//div[@class='fab-filter']/div[7]/div/div[@class='category-filter-row__container']/div/div[@data-test-id='multi-select-dropdown']/ul/li/a")));
-
-		String selectedColourText = selectedColour.getText();
-		selectedColour.click();
+		wait2.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//wb-tab[@name='0']/button")));
 
 //		Wait for loader.
-		WebDriverWait wait7 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait7.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='dcp-loader']")));
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait3.until(ExpectedConditions.invisibilityOfElementLocated(
+				By.xpath("//div[@class='dcp-loader']")));
+
+//      Navigate to colour option
+		WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		List<WebElement> preOwnedOptionsList = wait4.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//div[@data-v-0b8abf29 and @class='fab-filter']/div")));
+		
+		for (WebElement option : preOwnedOptionsList) {
+					
+				if (option.findElement(By.xpath("./div/div[@class='category-filter-row-headline']/p"))
+						.getText().contentEquals("Colour")) {
+					//Click to open colour options selector.	
+					WebDriverWait wait5 = new WebDriverWait(driver, Duration.ofSeconds(15));
+					wait5.until(ExpectedConditions.elementToBeClickable(option));
+					
+					option.click();
+					
+//					Click to see the colour options available.
+					WebDriverWait wait6 = new WebDriverWait(driver, Duration.ofSeconds(15));
+					WebElement colourDropdown = wait6.until(ExpectedConditions.visibilityOf(option.findElement(
+							By.xpath("./div/div[@class='category-filter-row__container']/div/div[@data-test-id='multi-select-dropdown']/a"))));
+					colourDropdown.click();
+					
+//					Click on the first available colour.
+					WebDriverWait wait7 = new WebDriverWait(driver, Duration.ofSeconds(15));
+					WebElement selectedColour = wait7.until(ExpectedConditions.elementToBeClickable(option.findElement(
+							By.xpath("./div/div[@class='category-filter-row__container']/div/div[@data-test-id='multi-select-dropdown']/ul/li["+selectedColourIndexer+"]/a"))));
+
+					selectedColourText = selectedColour.getText();
+					selectedColour.click();
+					
+					break;
+				}	
+		}
+		
+
+//		Wait for loader.
+		WebDriverWait wait8 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait8.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='dcp-loader']")));
 
 //		Validate if filter panel is correctly displaying the selected colour.
-		WebDriverWait wait8 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement filterPanel = wait8.until(ExpectedConditions
+		WebDriverWait wait9 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement filterPanel = wait9.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("//div[@data-test-id='dcp-selected-filters-widget-tag']")));
 		String filterPanelText = filterPanel.getText();
 
@@ -233,29 +267,11 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 
 		System.out.println("sortingCarFilterTest started");
 
-//		Click on sorting filter dropdown.
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement sortingFilterDropdown = wait.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//wb-select-control[@class='dcp-cars-srp__sorting-dropdown hydrated']")));
-
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait1.until(ExpectedConditions.elementToBeClickable(sortingFilterDropdown));
-		sortingFilterDropdown.click();
-
-//		Wait for loader.
-		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='dcp-loader']")));
-
-		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement sortingListOrder = wait3.until(ExpectedConditions.elementToBeClickable(
+		Select sortingListOrder = new Select(driver.findElement(
 				By.xpath("//wb-select-control[@class='dcp-cars-srp__sorting-dropdown hydrated']/wb-select/select")));
-
-		Actions builder = new Actions(driver);
-		builder.moveToElement(sortingListOrder).perform();	
-		sortingListOrder.sendKeys(sortingFilterType);
 		
-		builder.moveToElement(sortingListOrder).perform();
-		sortingListOrder.sendKeys(Keys.ENTER);
+		sortingListOrder.selectByVisibleText(sortingFilterType);
+		
 
 //		Wait for loader.
 		WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -269,6 +285,10 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 
 		System.out.println("selectFirstCarAvailableTest started");
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class='dcp-cars-srp-results__tile']")));
+		
 //		Count number of cars listed.
 		List<WebElement> carsTileList = driver.findElements(By.xpath("//div[@class='dcp-cars-srp-results__tile']"));
 		Assert.assertTrue(carsTileList.size() > 0, "There is no cars for the selected filters.");
@@ -277,11 +297,15 @@ public class ShopHomePageTests extends ShopCarSetupTests {
 		WebElement selectedCar = carsTileList.get(0).findElement(By.xpath("//div[@class='wb-button-text']"));
 		selectedCar.click();
 
-//		Wait for new page to be visible.
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='dcp-vehicle-details-category__list dcp-vehicle-details-list']/li")));
-				
 		
+//		Wait for new page to be visible.
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//ul[@class='dcp-vehicle-details-category__list dcp-vehicle-details-list']/li")));
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait2.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//ul[@class='dcp-vehicle-details-category__list dcp-vehicle-details-list']/li")));
+
 		System.out.println("selectFirstCarAvailableTest finished");
 	}
 
