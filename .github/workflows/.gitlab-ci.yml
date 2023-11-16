@@ -1,4 +1,10 @@
+name: Build & Run Tests
 
+on:
+   push:
+      branches:
+         - main
+         
 image: markhobson/maven-chrome:jdk-17
 stages:
   - test
